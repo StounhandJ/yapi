@@ -1,12 +1,12 @@
-<h1>API для управления Яндекс станцией</h1>
+<h1>API для управления несколькими Яндекс станциями</h1>
 
 `yapi` собран под AMD \
 `env GOOS=linux GOARCH=amd64 go build -o yapi cmd/yapi.go`
 
+OAUTH_TOKEN получается от приложения яндекс музыки
+
 <h3>.env.local</h3>
 
-OAUTH_TOKEN - токен Яндекса \
-DEVICE_ID - приложение яндекс -> устройства -> Станция -> идентификатор устройства \
 HTTP_HOST - хост http сервера (по-умолчанию `localhost:8001`)
 
 <h3>Установка</h3>
@@ -22,6 +22,8 @@ HTTP_HOST - хост http сервера (по-умолчанию `localhost:800
 `systemctl enable yapi.service`
 
 <h3>API</h3>
+
+При запросе в Basic auth необходимо установить DeviceID как login и OAUTH_TOKEN как пароль
 
 - Статус Станции \
 `GET localhost:8001`

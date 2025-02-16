@@ -1,15 +1,8 @@
-package socket
+package conversation
 
 import (
 	"context"
-	"net/http"
 )
-
-type Socket interface {
-	Run(ctx context.Context) (err error)
-	Read(w http.ResponseWriter, r *http.Request)
-	Write(w http.ResponseWriter, r *http.Request)
-}
 
 type Device interface {
 	GetState() []byte

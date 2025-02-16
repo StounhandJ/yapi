@@ -1,13 +1,14 @@
-package socket
+package conversation
 
 import (
 	"context"
-	"github.com/gorilla/websocket"
-	"github.com/stretchr/testify/require"
 	"net/http"
 	"net/http/httptest"
 	"strings"
 	"testing"
+
+	"github.com/gorilla/websocket"
+	"github.com/stretchr/testify/require"
 )
 
 type device struct {
@@ -31,25 +32,6 @@ func TestConversation_Connect(t *testing.T) {
 	defer conn.Close()
 
 	require.Nil(t, err)
-}
-
-func TestConversation_Run(t *testing.T) {
-	s := newServer(t)
-	defer s.Close()
-
-	conn := NewConversation(device{makeWsProto(s.URL)})
-
-	err := conn.Connect(context.Background())
-	defer conn.Close()
-
-	require.Nil(t, err)
-
-	go func() {
-		err = conn.Run(context.Background())
-		require.NotNil(t, err)
-	}()
-
-	conn.error <- "err"
 }
 
 func newServer(t *testing.T) *httptest.Server {

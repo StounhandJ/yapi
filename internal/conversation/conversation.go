@@ -1,4 +1,4 @@
-package socket
+package conversation
 
 import (
 	"context"
@@ -53,10 +53,14 @@ func (c *Conversation) Connect(ctx context.Context) (err error) {
 		log.Println("successful connection to the station")
 	}
 	c.connected = true
+
+	// TODO add run error handling
+	go c.run(ctx)
+
 	return
 }
 
-func (c *Conversation) Run(ctx context.Context) error {
+func (c *Conversation) run(ctx context.Context) error {
 	go c.read(ctx)
 	go c.pingConn(ctx)
 	go c.refreshToken(ctx)

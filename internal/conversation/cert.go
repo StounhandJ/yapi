@@ -1,4 +1,4 @@
-package socket
+package conversation
 
 import (
 	"crypto/x509"

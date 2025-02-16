@@ -1,8 +1,9 @@
-package socket
+package conversation
 
 import (
-	"github.com/stretchr/testify/require"
 	"testing"
+
+	"github.com/stretchr/testify/require"
 )
 
 const testCert = `
